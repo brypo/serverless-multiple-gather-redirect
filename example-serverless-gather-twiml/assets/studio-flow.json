@@ -1,0 +1,148 @@
+{
+    "description": "A New Flow",
+    "states": [
+      {
+        "name": "Trigger",
+        "type": "trigger",
+        "transitions": [
+          {
+            "event": "incomingMessage"
+          },
+          {
+            "next": "say-intro",
+            "event": "incomingCall"
+          },
+          {
+            "event": "incomingConversationMessage"
+          },
+          {
+            "event": "incomingRequest"
+          },
+          {
+            "event": "incomingParent"
+          }
+        ],
+        "properties": {
+          "offset": {
+            "x": 0,
+            "y": 0
+          }
+        }
+      },
+      {
+        "name": "say-intro",
+        "type": "say-play",
+        "transitions": [
+          {
+            "next": "redirect_to_func",
+            "event": "audioComplete"
+          }
+        ],
+        "properties": {
+          "voice": "default",
+          "offset": {
+            "x": 140,
+            "y": 260
+          },
+          "loop": 1,
+          "say": "Welcome",
+          "language": "default"
+        }
+      },
+      {
+        "name": "checkReturnedData",
+        "type": "split-based-on",
+        "transitions": [
+          {
+            "next": "noConsent",
+            "event": "noMatch"
+          },
+          {
+            "next": "yesConsent",
+            "event": "match",
+            "conditions": [
+              {
+                "friendly_name": "If value equal_to Success",
+                "arguments": [
+                  "{{widgets.redirect_to_func.consent}}"
+                ],
+                "type": "equal_to",
+                "value": "1"
+              }
+            ]
+          }
+        ],
+        "properties": {
+          "input": "{{widgets.redirect_to_func.consent}}",
+          "offset": {
+            "x": 150,
+            "y": 760
+          }
+        }
+      },
+      {
+        "name": "yesConsent",
+        "type": "say-play",
+        "transitions": [
+          {
+            "event": "audioComplete"
+          }
+        ],
+        "properties": {
+          "offset": {
+            "x": 530,
+            "y": 980
+          },
+          "loop": 1,
+          "say": "Your account number is {{widgets.redirect_to_func.accountNumber}} .\n\n{% if widgets.redirect_to_func.isAdult == 'true' %}\nWe have confirmed you are of legal age to continue. Thank you for giving your consent.\n{% else %}\nWe have determined you are under the legal age. Goodbye.\n{% endif %}",
+          "language": "default"
+        }
+      },
+      {
+        "name": "noConsent",
+        "type": "say-play",
+        "transitions": [
+          {
+            "event": "audioComplete"
+          }
+        ],
+        "properties": {
+          "offset": {
+            "x": -110,
+            "y": 1000
+          },
+          "loop": 1,
+          "say": "We understand you do not give your consent. Thank you anyway. Goodbye."
+        }
+      },
+      {
+        "name": "redirect_to_func",
+        "type": "add-twiml-redirect",
+        "transitions": [
+          {
+            "next": "checkReturnedData",
+            "event": "return"
+          },
+          {
+            "event": "timeout"
+          },
+          {
+            "event": "fail"
+          }
+        ],
+        "properties": {
+          "offset": {
+            "x": 140,
+            "y": 500
+          },
+          "method": "POST",
+          "url": "https://REPLACE_WITH_YOUR_DOMAIN.twil.io/function-gather-studio?flowSid={{flow.flow_sid}}&flowStep=getAccountNumber",
+          "timeout": "14400"
+        }
+      }
+    ],
+    "initial_state": "Trigger",
+    "flags": {
+      "allow_concurrent_calls": false
+    }
+  }
