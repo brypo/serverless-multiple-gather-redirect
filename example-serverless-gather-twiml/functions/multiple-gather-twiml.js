@@ -89,8 +89,16 @@ const getConsent = (twiml, accountNumber, yearOfBirth, functionUrl, flowSid) => 
 
 // perform logical processing with the data and then return it back to Studio
 const processGatheredData = (twiml, accountNumber, yearOfBirth, consent, context, flowSid) => {
-  //set a variable called isAdult if older than ~18
-  let resultString = parseInt(yearOfBirth) < 2003 ? `accountNumber=${accountNumber}&isAdult=true&consent=${consent}` : `accountNumber=${accountNumber}&isAdult=false&consent=${consent}`
+  //function to check if age > 17 based on birth year
+  const validateAge = (yearOfBirth) => {
+    let now = new Date().getFullYear();
+    let adult = (now - parseInt(yearOfBirth) > 17) ? 'true' : 'false';
+    return adult;
+  }
+
+  //set a variable called isAdult 
+  let isAdult = validateAge(yearOfBirth);
+  let resultString = `accountNumber=${accountNumber}&isAdult=${isAdult}&consent=${consent}`
 
   //info logging
   console.log(`Result to send to Studio: ${resultString}`)
