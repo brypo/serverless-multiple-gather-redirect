@@ -5,7 +5,7 @@ This Function is an example of how we can perform multiple GATHER operations and
 Three "gather" actions are performed:
 - get account number
 - get year of birth
-- get consent (vague)
+- get consent (1 = yes)
 
 Once all three gathers are completed, it will:
 - perform simple logic on the data
