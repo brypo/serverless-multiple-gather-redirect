@@ -16,6 +16,7 @@ In the `redirect_to_func` TwiML Redirect Widget, we are sending the caller to a 
 In the `checkReturnedData` widget, we do a "split based on" action with the data returned from the Twilio Function. This is to demonstrate how you can reference and use the returned Gather data from the Function. 
   
 To easily set up a Studio Flow with the same configuration, take the JSON data in this file and [import it to your Studio Flow](https://www.twilio.com/docs/studio/user-guide#importing-flow-data).
+
   [Studio Flow JSON](https://github.com/bschinina-twilio/serverless-multiple-gather-redirect/blob/main/example-serverless-gather-twiml/assets/studio-flow.json)
   
 ### Function
