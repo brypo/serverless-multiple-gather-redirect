@@ -20,7 +20,7 @@ To easily set up a Studio Flow with the same configuration, take the JSON data i
   [Studio Flow JSON](https://github.com/bschinina-twilio/serverless-multiple-gather-redirect/blob/main/example-serverless-gather-twiml/assets/studio-flow.json)
   
 ### Function
-This solution uses Twilio Serverless Functions. To learn more about these, please review this [documentation]9https://www.twilio.com/docs/runtime/functions).
+This solution uses Twilio Serverless Functions. To learn more about these, please review this [documentation](https://www.twilio.com/docs/runtime/functions).
 
 From the Function, we are invoking three `<Gather>` operations:
   1. Gather the caller's dummy "account number"
