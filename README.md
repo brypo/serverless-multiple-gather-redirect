@@ -1,12 +1,12 @@
 # Multiple Gather from one Twilio Serverless Function
-Example of how to use Studio to call a single Twilio Serverless Function (via TwiML Redirect Widget) to perform multiple <Gather> operations, and then route back to Studio Flow.
+Example of how to use Studio to call a single Twilio Serverless Function (via TwiML Redirect Widget) to perform multiple `<Gather>` operations, and then route back to Studio Flow.
 
 ### Studio
 The example Studio flow in this solution is very simple for demonstration purposes. 
   
 ![image](https://user-images.githubusercontent.com/67924770/157103316-0f58e622-3e4e-4822-ae9c-aff43596f95c.png)
 
-In the `redirect_to_func` TwiML Redirect Widget, we are sending the caller to a Twilio Function that performs 3 different <Gather> operations. We supply the Redirect URL with the following query string paramaters:
+In the `redirect_to_func` TwiML Redirect Widget, we are sending the caller to a Twilio Function that performs 3 different `<Gather>` operations. We supply the Redirect URL with the following query string paramaters:
   - Studio Flow SID (`flow.flow_sid`)
   - First `Gather` step defined in the Twilio Function (`getAccountNumber`)
   
@@ -22,7 +22,7 @@ To easily set up a Studio Flow with the same configuration, take the JSON data i
 ### Function
 This solution uses Twilio Serverless Functions. To learn more about these, please review this [documentation]9https://www.twilio.com/docs/runtime/functions).
 
-From the Function, we are invoking three <Gather> operations:
+From the Function, we are invoking three `<Gather>` operations:
   1. Gather the caller's dummy "account number"
   2. Gather the caller's "year of birth"
   3. Gather the caller's "consent" 
