@@ -4,9 +4,14 @@ Example of how to use Studio to call a single Twilio Serverless Function (via Tw
 ### Studio
 The example Studio flow in this solution is very simple for demonstration purposes. 
   
-  ![image](https://user-images.githubusercontent.com/67924770/157098497-7a982e33-0b93-4d8f-8084-5e20200cd997.png)
+![image](https://user-images.githubusercontent.com/67924770/157103316-0f58e622-3e4e-4822-ae9c-aff43596f95c.png)
 
-In the `redirect_to_func` TwiML Redirect Widget, we are sending the caller to a Twilio Function that performs 3 different <Gather> operations.
+In the `redirect_to_func` TwiML Redirect Widget, we are sending the caller to a Twilio Function that performs 3 different <Gather> operations. We supply the Redirect URL with the following query string paramaters:
+  - Studio Flow SID (`flow.flow_sid`)
+  - First `Gather` step defined in the Twilio Function (`getAccountNumber`)
+  
+  Full example URL:
+  `https://YOUR_DOMAIN.twil.io/YOUR_PATH?flowSid={{flow.flow_sid}}&flowStep=getAccountNumber`
 
 In the `checkReturnedData` widget, we do a "split based on" action with the data returned from the Twilio Function. This is to demonstrate how you can reference and use the returned Gather data from the Function. 
   
@@ -24,10 +29,15 @@ From the Function, we are invoking three <Gather> operations:
 Each iteration through the Function will move the caller through to the next Gather step. On Gather complete, we will capture the data and re-run the Function with the next Gather request, until all 3 Gathers have been completed. 
 
 Once we have all the data, this data will be returned back to Studio to perform further logic. 
+  
+In this example, we return the following data to Studio:
+  - Account Number
+  - isAdult boolean value (determined by "year of birth" data)
+  - Consent (1 = YES)
 
 ### Benefits
 This solution can be beneficial for the following requirements:
-  -  Implement better security on Gathered data, like encryption. This allows for data to be gathered and processed securely (outside of Studio, since Studio is not PCI Compliant) and data returned back to Studio to coninue additional logic with encrypted data.
+  -  Implement better security on Gathered data, like encryption. This allows for data to be gathered and processed securely (outside of Studio, since Studio is not PCI Compliant) and then have data returned back to Studio to coninue additional logic with encrypted data.
   - Reduce the number of Studio Widgets in a Flow
   
 ### Disclaimer
