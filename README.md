@@ -1,7 +1,7 @@
 # Multiple Gather from one Twilio Serverless Function
 Example of how to use Studio to call a single Twilio Serverless Function (via TwiML Redirect Widget) to perform multiple `<Gather>` operations, and then route back to Studio Flow.
 
-![image](https://user-images.githubusercontent.com/67924770/157148508-b6aff2c0-d13f-4acb-85be-c32c194fa0f2.png)
+![image](https://user-images.githubusercontent.com/67924770/157149703-8159b4dd-c769-493b-a583-f865291e90e7.png)
 
 
 ### Studio
