@@ -38,11 +38,6 @@ In this example, we return the following data to Studio:
   - Account Number
   - isAdult boolean value (determined by "year of birth" data)
   - Consent (1 = YES)
-
-### Benefits
-This solution can be beneficial for the following requirements:
-  -  Implement better security on Gathered data, like encryption. This allows for data to be gathered and processed securely (outside of Studio, since Studio is not PCI Compliant) and then have data returned back to Studio to coninue additional logic with encrypted data.
-  - Reduce the number of Studio Widgets in a Flow
   
 ### Disclaimer
 This software is to be considered "sample code", a Type B Deliverable, and is delivered "as-is" to the user. Twilio bears no responsibility to support the use or implementation of this software.
