@@ -16,7 +16,7 @@ Once all three gathers are completed, it will:
 exports.handler = function (context, event, callback) {
   const twiml = new Twilio.twiml.VoiceResponse();
   const functionName = "multiple-gather-twiml"; //set this to the name of your function
-  const functionUrl = `https://${context.DOMAIN_NAME}/{${functionName}`;
+  const functionUrl = `https://${context.DOMAIN_NAME}/${functionName}`;
 
   const flowStep = event.flowStep.toString();
   const flowSid = event.flowSid.toString();
