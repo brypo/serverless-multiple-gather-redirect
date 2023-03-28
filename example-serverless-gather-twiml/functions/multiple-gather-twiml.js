@@ -39,7 +39,7 @@ exports.handler = function (context, event, callback) {
           processGatheredData(twiml, event.accountNumber.toString(), event.yearOfBirth.toString(), event.Digits, context, flowSid);
 
   }
-  callback(null, twiml);
+  return callback(null, twiml);
 };
 
 // gather dummy account number
